@@ -11,24 +11,30 @@ public class MainPage extends BasePage {
     public MainPage(WebDriver driver) {
         super(driver);
     }
+
+    private By pasteField = By.id("postform-text");
+    private By pasteExpirationPushing = By.id("select2-postform-expiration-container");
+    private By pasteExpirationSelection = By.xpath("//li[text()='10 Minutes']");
+    private By pasteNameFieldPushing = By.id("postform-name");
+    private By newPasteButton = By.xpath("//button[@class='btn -big']");
     public void openPage(){
         driver.get("https://pastebin.com");
     }
 
     public void writeTextInToNewPasteField(String textForNewPaste){
-        driver.findElement(By.id("postform-text")).sendKeys(textForNewPaste);
+        driver.findElement(pasteField).sendKeys(textForNewPaste);
     }
 
     public void selectPasteExpiration(){
-        driver.findElement(By.id("select2-postform-expiration-container")).click();
-        driver.findElement(By.xpath("//li[text()='10 Minutes']")).click();
+        driver.findElement(pasteExpirationPushing).click();
+        driver.findElement(pasteExpirationSelection).click();
     }
 
     public void writeTextInToPasteNameField(String textForPasteName){
-        driver.findElement(By.id("postform-name")).sendKeys(textForPasteName);
+        driver.findElement(pasteNameFieldPushing).sendKeys(textForPasteName);
     }
 
     public void pressCreateNewPasteButton(){
-        driver.findElement(By.xpath("//button[@class='btn -big']")).click();
+        driver.findElement(newPasteButton).click();
     }
 }
